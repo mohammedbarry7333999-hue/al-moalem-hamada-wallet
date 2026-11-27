@@ -1,611 +1,246 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
+<meta name="theme-color" content="#f4f3f8">
 <title>المعلم حمادة للحوالات</title>
-
 <style>
 *{box-sizing:border-box}
-:root{
---gold:#e5bd58;
---gold2:#a77b25;
---panel:#171717;
---muted:#aaa
-}
-body{
-margin:0;background:#090909;color:#fff;
-font-family:Tahoma,Arial,sans-serif;
-padding-bottom:85px
-}
-header{
-padding:22px 18px 12px;
-display:flex;align-items:center;
-justify-content:space-between
-}
-.brand{display:flex;align-items:center;gap:11px}
-.logo{
-width:48px;height:48px;border:2px solid var(--gold);
-border-radius:15px;display:grid;place-items:center;
-color:var(--gold);font-size:25px;font-weight:bold
-}
-.brand h1{font-size:17px;color:var(--gold);margin:0 0 5px}
-.brand small{color:#aaa;font-size:11px}
-.circle{
-border:1px solid #444;border-radius:50%;
-width:42px;height:42px;display:grid;
-place-items:center;font-size:19px;cursor:pointer
-}
-.container{padding:12px 17px}
-.welcome{color:#bbb;font-size:13px;margin:8px 0 16px}
-.balance{
-background:linear-gradient(135deg,#292216,#111 75%);
-border:1px solid #92702e;border-radius:19px;
-padding:21px;position:relative;overflow:hidden
-}
-.balance:after{
-content:"";position:absolute;width:150px;height:150px;
-border:1px solid #9e7b39;border-radius:50%;
-left:-65px;top:40px;opacity:.2
-}
-.balance-label{font-size:13px;color:#d3c49f}
-.balance-value{
-font-size:31px;font-weight:bold;color:#f4d27e;
-margin:13px 0
-}
-.balance-note{font-size:11px;color:#aaa}
-.currency{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:9px;margin-top:17px
-}
-.currency div{
-background:#ffffff0b;border:1px solid #ffffff20;
-border-radius:12px;padding:11px 5px;text-align:center
-}
-.currency b{
-display:block;color:var(--gold);font-size:13px;margin-bottom:7px
-}
-.currency span{font-size:12px;color:#ddd}
-.section-title{
-display:flex;justify-content:space-between;
-align-items:center;margin:25px 0 14px
-}
+:root{--red:#ed102b;--bg:#f3f2f7;--ink:#17171b;--muted:#92929a;--white:#fff}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;padding-bottom:92px}
+button,input,select{font:inherit}
+header{padding:22px 20px 12px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:15px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:25px;font-weight:bold;box-shadow:0 7px 18px #ed102b35}
+.brand h1{font-size:17px;margin:0 0 5px;font-weight:800}
+.brand small{font-size:11px;color:var(--muted)}
+.header-actions{display:flex;gap:9px}
+.circle{width:43px;height:43px;border:0;border-radius:14px;background:#fff;color:var(--red);font-size:20px}
+main{padding:8px 18px 20px;max-width:620px;margin:auto}
+.welcome{font-size:13px;color:var(--muted);margin:4px 3px 16px}
+.balance{background:var(--red);color:#fff;border-radius:27px;padding:23px 22px 19px;position:relative;overflow:hidden;min-height:215px;box-shadow:0 12px 24px #ed102b20}
+.balance:after{content:"";position:absolute;width:230px;height:230px;border:24px dotted #ffffff20;border-radius:50%;left:-85px;bottom:-125px}
+.balance-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
+.balance-brand{font-size:23px;font-weight:900;line-height:1.2}
+.balance-brand small{display:block;font-size:11px;font-weight:500}
+.balance-label{font-size:12px;opacity:.9}
+.balance-value{font-size:29px;font-weight:bold;margin:30px 0 15px;letter-spacing:.4px;position:relative;z-index:1}
+.balance-note{font-size:11px;opacity:.85;position:relative;z-index:1}
+.currency{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:17px;position:relative;z-index:1}
+.currency div{background:#ffffff20;border:1px solid #ffffff35;border-radius:12px;padding:9px 5px;text-align:center}
+.currency b{display:block;font-size:11px;margin-bottom:5px}
+.currency span{font-size:12px}
+.dots{text-align:center;color:#999;font-size:20px;letter-spacing:3px;margin:9px 0 17px}
+.promo{height:105px;border-radius:18px;background:linear-gradient(100deg,#e6e5e8,#fff);display:flex;align-items:center;justify-content:space-between;padding:15px 20px;margin-bottom:18px;overflow:hidden}
+.promo strong{color:var(--red);font-size:20px;display:block;margin-bottom:7px}
+.promo span{font-size:15px;font-weight:bold}
+.promo-icon{font-size:52px;color:var(--red);opacity:.9}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:22px 2px 12px}
 .section-title h2{font-size:16px;margin:0}
-.section-title small{
-color:var(--gold);font-size:11px;cursor:pointer
-}
-.actions{
-display:grid;grid-template-columns:repeat(4,1fr);gap:9px
-}
-.action{
-background:var(--panel);border:1px solid #292929;
-border-radius:14px;padding:14px 3px;text-align:center;
-cursor:pointer;min-width:0
-}
-.action:active{border-color:var(--gold)}
-.action .ico{
-font-size:23px;color:var(--gold);
-display:block;margin-bottom:9px
-}
-.action span:last-child{font-size:10px;color:#ddd}
-.transactions{
-background:var(--panel);border:1px solid #292929;
-border-radius:15px;overflow:hidden
-}
-.tx{
-padding:14px;display:flex;align-items:center;
-gap:11px;border-bottom:1px solid #292929
-}
+.section-title small{font-size:11px;color:var(--red);cursor:pointer}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.action{min-height:116px;background:#fff;border:0;border-radius:19px;padding:15px 6px 12px;text-align:center;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;box-shadow:0 2px 8px #20203305}
+.action:active{transform:scale(.98)}
+.action .ico{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:var(--bg);font-size:25px;color:var(--red)}
+.action span:last-child{font-size:13px;font-weight:600}
+.list{display:grid;gap:10px}
+.list-item{background:#fff;border:0;border-radius:17px;padding:17px 16px;min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:right;cursor:pointer;color:var(--ink)}
+.list-item .list-icon{width:52px;height:52px;border-radius:15px;background:var(--bg);display:grid;place-items:center;color:var(--red);font-size:23px;flex-shrink:0}
+.list-item span:nth-child(2){flex:1;font-size:15px}
+.transactions{background:#fff;border-radius:17px;overflow:hidden}
+.tx{padding:14px;display:flex;align-items:center;gap:11px;border-bottom:1px solid #f0eff3}
 .tx:last-child{border:0}
-.tx-icon{
-width:39px;height:39px;border-radius:12px;
-background:#302719;display:grid;place-items:center;
-color:var(--gold);font-size:18px
-}
+.tx-icon{width:39px;height:39px;border-radius:13px;background:var(--bg);display:grid;place-items:center;color:var(--red);font-size:18px}
 .tx-info{flex:1;min-width:0}
 .tx-info b{font-size:12px;display:block;margin-bottom:6px}
-.tx-info small{color:#999;font-size:10px}
+.tx-info small{color:var(--muted);font-size:10px}
 .amount{font-size:12px;font-weight:bold}
-.plus{color:#58c78a}
-.minus{color:#e28a78}
-.bottom{
-position:fixed;bottom:0;left:0;right:0;
-background:#111;border-top:1px solid #333;
-display:flex;justify-content:space-around;
-padding:11px 5px calc(11px + env(safe-area-inset-bottom));
-z-index:5
-}
-.nav{
-background:none;border:0;color:#999;font-size:10px;
-display:grid;gap:5px;justify-items:center;cursor:pointer
-}
-.nav i{font-size:20px;font-style:normal}
-.nav.active{color:var(--gold)}
-.modal{
-display:none;position:fixed;inset:0;background:#000c;
-z-index:10;align-items:center;justify-content:center;padding:18px
-}
+.notice{text-align:center;color:var(--muted);font-size:10px;line-height:1.8;margin:20px 5px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e9e8ee;display:flex;justify-content:space-around;padding:10px 5px calc(10px + env(safe-area-inset-bottom));z-index:5;box-shadow:0 -5px 18px #17171b08}
+.nav{background:none;border:0;color:#a5a5ab;font-size:10px;display:grid;gap:5px;justify-items:center;cursor:pointer;min-width:52px}
+.nav i{font-size:22px;font-style:normal}
+.nav.active{color:var(--red);font-weight:bold}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:10;align-items:flex-end;justify-content:center;padding:12px}
 .modal.show{display:flex}
-.dialog{
-background:#191919;border:1px solid #8c6a2e;
-border-radius:18px;padding:20px;width:100%;max-width:420px;
-max-height:90vh;overflow:auto
-}
-.dialog h3{color:var(--gold);margin:0 0 18px}
-label{display:block;color:#ccc;font-size:12px;margin:12px 0 7px}
-input,select{
-width:100%;padding:13px;background:#0d0d0d;
-color:white;border:1px solid #444;border-radius:10px;
-font-size:14px;outline:none
-}
-input:focus,select:focus{border-color:var(--gold)}
-.btn{
-width:100%;padding:14px;
-background:linear-gradient(110deg,#a77b25,#f1d17c);
-border:0;border-radius:11px;font-weight:bold;
-color:#17120a;margin-top:17px;font-size:14px;cursor:pointer
-}
-.cancel{
-width:100%;padding:12px;background:#292929;
-color:white;border:0;border-radius:10px;margin-top:9px
-}
-.notice{
-text-align:center;color:#999;font-size:10px;
-line-height:1.8;margin:19px 5px
-}
-.toast{
-position:fixed;bottom:90px;left:15px;right:15px;
-background:#292216;border:1px solid var(--gold);
-padding:14px;border-radius:12px;text-align:center;
-color:#f4d27e;display:none;z-index:20;font-size:13px
-}
+.dialog{background:#fff;border-radius:25px 25px 18px 18px;padding:22px 19px;width:100%;max-width:480px;max-height:90vh;overflow:auto}
+.dialog h3{text-align:center;margin:0 0 18px;font-size:20px}
+.dialog label{display:block;color:var(--muted);font-size:12px;margin:13px 2px 7px}
+.dialog input,.dialog select{width:100%;padding:15px;background:#fff;color:var(--ink);border:1px solid #e4e3e9;border-radius:13px;font-size:15px;outline:none}
+.dialog input:focus,.dialog select:focus{border-color:var(--red)}
+.btn{width:100%;padding:16px;background:var(--red);border:0;border-radius:14px;font-weight:bold;color:#fff;margin-top:19px;font-size:15px;cursor:pointer}
+.cancel{width:100%;padding:13px;background:#f1f0f4;color:var(--ink);border:0;border-radius:13px;margin-top:9px;cursor:pointer}
+.toast{position:fixed;bottom:100px;left:15px;right:15px;background:#202027;color:#fff;padding:14px;border-radius:13px;text-align:center;display:none;z-index:20;font-size:13px}
+.page{display:none}.page.active{display:block}
+@media(min-width:560px){main{padding-left:24px;padding-right:24px}.actions{gap:12px}.action{min-height:125px}}
 </style>
 </head>
-
 <body>
-
 <header>
-<div class="brand">
-<div class="logo">ح</div>
-<div>
-<h1>المعلم حمادة للحوالات</h1>
-<small>محفظتك الرقمية بأمان وثقة</small>
-</div>
-</div>
-<div class="circle" onclick="toast('الإشعارات')">♧</div>
+  <div class="brand">
+    <div class="logo">ح</div>
+    <div><h1>المعلم حمادة للحوالات</h1><small>حوالاتك وخدماتك المالية بكل سهولة</small></div>
+  </div>
+  <div class="header-actions">
+    <button class="circle" onclick="toast('لا توجد إشعارات جديدة')">♧</button>
+    <button class="circle" onclick="toast('مرحباً بك في المعلم حمادة للحوالات')">♙</button>
+  </div>
 </header>
 
-<main class="container">
-
-<p class="welcome">مرحباً بك 👋 في محفظتك الرقمية</p>
-
-<section class="balance">
-<div class="balance-label">إجمالي أرصدتك التجريبية</div>
-<div class="balance-value" id="mainBalance">
-0.00 <small style="font-size:13px">YER</small>
-</div>
-<div class="balance-note">الأرصدة حسب كل عملة</div>
-
-<div class="currency">
-<div><b>YER</b><span id="yerBalance">0.00</span></div>
-<div><b>SAR</b><span id="sarBalance">0.00</span></div>
-<div><b>USD</b><span id="usdBalance">0.00</span></div>
-</div>
+<main>
+<section id="homePage" class="page active">
+  <p class="welcome">صباح الخير 👋 حياك الله في المعلم حمادة للحوالات</p>
+  <section class="balance">
+    <div class="balance-top">
+      <div class="balance-brand">المعلم حمادة<small>للحوالات والخدمات المالية</small></div>
+      <div class="balance-label">حساب<br><b>ريال يمني</b></div>
+    </div>
+    <div class="balance-value" id="mainBalance">0.00 YER</div>
+    <div class="balance-note">إجمالي رصيدك التجريبي</div>
+    <div class="currency">
+      <div><b>YER</b><span id="yerBalance">0.00</span></div>
+      <div><b>SAR</b><span id="sarBalance">0.00</span></div>
+      <div><b>USD</b><span id="usdBalance">0.00</span></div>
+    </div>
+  </section>
+  <div class="dots">● <span style="color:var(--red)">●</span> ●</div>
+  <div class="promo"><div><strong>ابدأ الآن...</strong><span>مع المعلم حمادة للحوالات</span></div><div class="promo-icon">◉</div></div>
+  <div class="section-title"><h2>الخدمات الرئيسية</h2><small onclick="showPage('servicesPage')">جميع الخدمات</small></div>
+  <div class="actions">
+    <button class="action" onclick="showPage('servicesPage')"><span class="ico">⇄</span><span>تحويلات مالية</span></button>
+    <button class="action" onclick="showPage('localPage')"><span class="ico">▣</span><span>حوالات محلية</span></button>
+    <button class="action" onclick="showPage('payPage')"><span class="ico">▤</span><span>الشحن والسداد</span></button>
+    <button class="action" onclick="openModal('deposit')"><span class="ico">＋</span><span>إيداع رصيد</span></button>
+    <button class="action" onclick="openModal('withdraw')"><span class="ico">↧</span><span>سحب نقدي</span></button>
+    <button class="action" onclick="openModal('bills')"><span class="ico">▱</span><span>دفع مشتريات</span></button>
+    <button class="action" onclick="toast('خدمة جيبي قيد التجهيز')"><span class="ico">♡</span><span>جيبي</span></button>
+    <button class="action" onclick="toast('الخدمات الترفيهية قيد التجهيز')"><span class="ico">♧</span><span>خدمات ترفيهية</span></button>
+    <button class="action" onclick="showHistory()"><span class="ico">▣</span><span>المدفوعات</span></button>
+  </div>
+  <div class="section-title"><h2>آخر العمليات</h2><small onclick="showHistory()">عرض الكل</small></div>
+  <div class="transactions" id="transactions"></div>
+  <p class="notice">نسخة تجريبية للعرض والتطوير فقط<br>لا ترسل أموالاً حقيقية ولا تتصل بالبنوك أو شبكات الحوالات.</p>
 </section>
 
-<div class="section-title">
-<h2>الخدمات المالية</h2>
-<small>جميع الخدمات</small>
-</div>
+<section id="servicesPage" class="page">
+  <div class="section-title"><h2>تحويلات مالية</h2></div>
+  <div class="list">
+    <button class="list-item" onclick="openModal('send')"><span class="list-icon">⇢</span><span>تحويل إلى مشترك</span></button>
+    <button class="list-item" onclick="toast('خدمة التحويل بين الحسابات قيد التجهيز')"><span class="list-icon">⟳</span><span>تحويل بين حساباتي (مصارف)</span></button>
+    <button class="list-item" onclick="showPage('localPage')"><span class="list-icon">⇩</span><span>حوالات شبكات محلية</span></button>
+    <button class="list-item" onclick="openModal('receive')"><span class="list-icon">▤</span><span>طلب استلام حوالة</span></button>
+    <button class="list-item" onclick="toast('خدمة البنوك والمحافظ قيد التجهيز')"><span class="list-icon">♜</span><span>بنوك ومحافظ</span></button>
+    <button class="list-item" onclick="toast('خدمة التحويل إلى محافظ أخرى قيد التجهيز')"><span class="list-icon">◉</span><span>تحويل إلى محافظ أخرى - واصل</span></button>
+  </div>
+</section>
 
-<div class="actions">
-<div class="action" onclick="openModal('send')"><span class="ico">↗</span><span>إرسال حوالة</span></div>
-<div class="action" onclick="openModal('receive')"><span class="ico">↙</span><span>استلام حوالة</span></div>
-<div class="action" onclick="openModal('deposit')"><span class="ico">＋</span><span>إيداع</span></div>
-<div class="action" onclick="openModal('withdraw')"><span class="ico">－</span><span>سحب</span></div>
-<div class="action" onclick="openModal('bills')"><span class="ico">▤</span><span>الفواتير</span></div>
-<div class="action" onclick="toast('خدمة QR قيد التجهيز')"><span class="ico">▦</span><span>دفع QR</span></div>
-<div class="action" onclick="showHistory()"><span class="ico">◷</span><span>السجل</span></div>
-<div class="action" onclick="toast('خدمة الوكلاء قيد التجهيز')"><span class="ico">♙</span><span>الوكلاء</span></div>
-</div>
+<section id="localPage" class="page">
+  <div class="section-title"><h2>حوالات شبكات محلية</h2></div>
+  <div class="list">
+    <button class="list-item" onclick="openModal('send')"><span class="list-icon">Y</span><span>إرسال حوالة محلية</span></button>
+    <button class="list-item" onclick="openModal('receive')"><span class="list-icon">▤</span><span>طلب استلام حوالة</span></button>
+  </div>
+</section>
 
-<div class="section-title">
-<h2>آخر العمليات</h2>
-<small onclick="showHistory()">عرض الكل</small>
-</div>
+<section id="payPage" class="page">
+  <div class="section-title"><h2>الشحن والسداد</h2></div>
+  <div class="list">
+    <button class="list-item" onclick="openModal('deposit')"><span class="list-icon">↻</span><span>شحن الرصيد</span></button>
+    <button class="list-item" onclick="openModal('bills')"><span class="list-icon">▤</span><span>سداد باقات</span></button>
+    <button class="list-item" onclick="openModal('bills')"><span class="list-icon">◉</span><span>الإنترنت والهاتف الثابت</span></button>
+    <button class="list-item" onclick="openModal('bills')"><span class="list-icon">ϟ</span><span>فواتير الماء والكهرباء</span></button>
+    <button class="list-item" onclick="toast('خدمات يمن فورجي قيد التجهيز')"><span class="list-icon">4G</span><span>خدمات يمن فورجي 4G</span></button>
+  </div>
+</section>
 
-<div class="transactions" id="transactions"></div>
-
-<p class="notice">
-نسخة تجريبية للعرض والتطوير فقط<br>
-لا ترسل أموالاً حقيقية ولا تتصل بالبنوك أو شبكات الحوالات.
-</p>
-
+<section id="historyPage" class="page">
+  <div class="section-title"><h2>سجل العمليات</h2></div>
+  <div class="transactions" id="allTransactions"></div>
+</section>
 </main>
 
 <nav class="bottom">
-<button class="nav active" onclick="navTo(this,'الرئيسية')"><i>⌂</i>الرئيسية</button>
-<button class="nav" onclick="openModal('send')"><i>↗</i>تحويل</button>
-<button class="nav" onclick="openModal('deposit')"><i>▣</i>المحفظة</button>
-<button class="nav" onclick="showHistory()"><i>◷</i>السجل</button>
-<button class="nav" onclick="navTo(this,'حسابي')"><i>♙</i>حسابي</button>
+  <button class="nav active" onclick="navTo(this,'homePage')"><i>⌂</i>الرئيسية</button>
+  <button class="nav" onclick="navTo(this,'servicesPage')"><i>⇄</i>التحويلات</button>
+  <button class="nav" onclick="navTo(this,'payPage')"><i>▣</i>الخدمات</button>
+  <button class="nav" onclick="navTo(this,'historyPage')"><i>☷</i>التقارير</button>
+  <button class="nav" onclick="toast('صفحة الحساب الشخصي قيد التجهيز')"><i>♙</i>الملف</button>
 </nav>
 
 <div class="modal" id="modal">
-<div class="dialog">
-<h3 id="modalTitle">الخدمة</h3>
-<div id="modalFields"></div>
-<button class="btn" onclick="submitDemo()">متابعة</button>
-<button class="cancel" onclick="closeModal()">إغلاق</button>
+  <div class="dialog">
+    <h3 id="modalTitle">الخدمة</h3>
+    <div id="modalFields"></div>
+    <button class="btn" onclick="submitDemo()">استمرار</button>
+    <button class="cancel" onclick="closeModal()">إلغاء</button>
+  </div>
 </div>
-</div>
-
 <div class="toast" id="toastBox"></div>
 
 <script>
-const STORAGE_KEY = 'hamada_wallet_demo_v3';
-
-const forms = {
-send: ['إرسال حوالة', [
-['رقم هاتف المستلم','tel'],
-['المبلغ','number'],
-['العملة','currency']
-]],
-receive: ['استلام حوالة', [
-['كود الحوالة','text']
-]],
-deposit: ['إيداع رصيد', [
-['المبلغ','number'],
-['العملة','currency']
-]],
-withdraw: ['سحب رصيد', [
-['المبلغ','number'],
-['العملة','currency']
-]],
-bills: ['دفع الفواتير', [
-['نوع الخدمة','bills'],
-['رقم الاشتراك أو الهاتف','text'],
-['المبلغ','number'],
-['العملة','currency']
-]]
+const STORAGE_KEY='hamada_wallet_demo_v3';
+const forms={
+ send:['إرسال حوالة شبكة تجريبية',[['رقم هاتف المستلم','tel'],['المبلغ','number'],['العملة','currency']]],
+ receive:['طلب استلام حوالة',[['كود الحوالة','text']]],
+ deposit:['شحن الرصيد',[['المبلغ','number'],['العملة','currency']]],
+ withdraw:['سحب نقدي',[['المبلغ','number'],['العملة','currency']]],
+ bills:['سداد الفواتير والباقات',[['نوع الخدمة','bills'],['رقم الاشتراك أو الهاتف','text'],['المبلغ','number'],['العملة','currency']]]
 };
-
-function loadWallet(){
-try{
-const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));
-if(saved && saved.balances && Array.isArray(saved.transactions)){
-return saved;
-}
-}catch(e){}
-return {
-balances:{YER:0,SAR:0,USD:0},
-transactions:[]
-};
-}
-
-let wallet=loadWallet();
-let current='';
-
-function saveWallet(){
-try{
-localStorage.setItem(STORAGE_KEY,JSON.stringify(wallet));
-}catch(e){
-toast('تعذر حفظ البيانات على الهاتف');
-}
-}
-
-function formatAmount(amount){
-return Number(amount).toLocaleString('en-US',{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
-}
-
-function openModal(type){
-if(!forms[type])return;
-
-current=type;
-const form=forms[type];
-document.getElementById('modalTitle').textContent=form[0];
-
-let html='';
-
-form[1].forEach((field,i)=>{
-html+='<label>'+field[0]+'</label>';
-
-if(field[1]==='currency'){
-html+=`<select id="field${i}">
-<option value="YER">YER</option>
-<option value="SAR">SAR</option>
-<option value="USD">USD</option>
-</select>`;
-}else if(field[1]==='bills'){
-html+=`<select id="field${i}">
-<option value="كهرباء">كهرباء</option>
-<option value="ماء">ماء</option>
-<option value="إنترنت">إنترنت</option>
-<option value="رصيد هاتف">رصيد هاتف</option>
-</select>`;
-}else{
-html+=`<input id="field${i}"
-type="${field[1]}"
-placeholder="${field[0]}"
-${field[1]==='number'?'min="0.01" step="any" inputmode="decimal"':''}>`;
-}
-});
-
-document.getElementById('modalFields').innerHTML=html;
-document.getElementById('modal').classList.add('show');
-}
-
-function closeModal(){
-document.getElementById('modal').classList.remove('show');
-}
-
-function getValue(index){
-const element=document.getElementById('field'+index);
-return element ? element.value.trim() : '';
-}
-
-function getAmount(index){
-const value=Number(getValue(index));
-return Number.isFinite(value)&&value>0?value:0;
-}
-
-function addTransaction(type,amount,currency,details){
-wallet.transactions.unshift({
-type,
-amount,
-currency,
-details,
-date:new Date().toLocaleString('ar-YE')
-});
-wallet.transactions=wallet.transactions.slice(0,100);
-saveWallet();
-renderWallet();
-}
-
+function loadWallet(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));if(s&&s.balances&&Array.isArray(s.transactions))return s}catch(e){}return{balances:{YER:0,SAR:0,USD:0},transactions:[]}}
+let wallet=loadWallet(),current='';
+function saveWallet(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(wallet))}catch(e){toast('تعذر حفظ البيانات على الهاتف')}}
+function formatAmount(n){return Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function openModal(type){if(!forms[type])return;current=type;const f=forms[type];document.getElementById('modalTitle').textContent=f[0];let h='';f[1].forEach((field,i)=>{h+='<label>'+field[0]+'</label>';if(field[1]==='currency'){h+='<select id="field'+i+'"><option value="YER">ريال يمني YER</option><option value="SAR">ريال سعودي SAR</option><option value="USD">دولار USD</option></select>'}else if(field[1]==='bills'){h+='<select id="field'+i+'"><option>كهرباء</option><option>ماء</option><option>إنترنت</option><option>رصيد هاتف</option></select>'}else{h+='<input id="field'+i+'" type="'+field[1]+'" placeholder="'+field[0]+'" '+(field[1]==='number'?'min="0.01" step="any" inputmode="decimal"':'')+'>'}});document.getElementById('modalFields').innerHTML=h;document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function getValue(i){const e=document.getElementById('field'+i);return e?e.value.trim():''}
+function getAmount(i){const n=Number(getValue(i));return Number.isFinite(n)&&n>0?n:0}
+function addTransaction(type,amount,currency,details){wallet.transactions.unshift({type,amount,currency,details,date:new Date().toLocaleString('ar-YE')});wallet.transactions=wallet.transactions.slice(0,100);saveWallet();renderWallet()}
 function submitDemo(){
-
-// إرسال حوالة: فتح تطبيق الرسائل بنص جاهز
-if(current==='send'){
-
-const phone=getValue(0);
-const amount=getAmount(1);
-const currency=getValue(2);
-
-if(!/^[0-9+\-\s]{7,20}$/.test(phone)){
-toast('أدخل رقم هاتف المستلم بشكل صحيح');
-return;
+ if(current==='send'){
+  const phone=getValue(0),amount=getAmount(1),currency=getValue(2);
+  if(!/^[0-9+\-\s]{7,20}$/.test(phone))return toast('أدخل رقم هاتف المستلم بشكل صحيح');
+  if(!amount)return toast('أدخل مبلغاً صحيحاً');
+  if(currency!=='YER')return toast('اختر العملة YER');
+  const a=formatAmount(amount),msg=`استلمت مبلغ ${a} YER من 733392735\nرصيدك هو ${a} YER`;
+  closeModal();addTransaction('طلب حوالة عبر SMS',amount,'YER','تم تجهيز نص الرسالة للرقم '+phone);
+  toast('هذه النسخة تفتح رسالة SMS جاهزة ولا ترسلها تلقائياً');
+  setTimeout(()=>{window.location.href='sms:'+phone.replace(/[\s-]/g,'')+'?body='+encodeURIComponent(msg)},500);
+  return;
+ }
+ if(current==='deposit'){
+  const a=getAmount(0),c=getValue(1);if(!a)return toast('أدخل مبلغاً صحيحاً');
+  wallet.balances[c]+=a;addTransaction('إيداع تجريبي',a,c,'إضافة رصيد تجريبي');closeModal();toast('تمت إضافة الرصيد التجريبي');return;
+ }
+ if(current==='withdraw'){
+  const a=getAmount(0),c=getValue(1);if(!a)return toast('أدخل مبلغاً صحيحاً');if(wallet.balances[c]<a)return toast('الرصيد التجريبي غير كافٍ');
+  wallet.balances[c]-=a;addTransaction('سحب تجريبي',a,c,'سحب من المحفظة التجريبية');closeModal();toast('تم تسجيل السحب التجريبي');return;
+ }
+ if(current==='receive'){
+  const code=getValue(0);if(!code||code.length<4)return toast('أدخل كود الحوالة');
+  addTransaction('طلب استلام حوالة',0,'YER','بانتظار التحقق من الكود: '+code);closeModal();toast('تم تسجيل الطلب بانتظار التحقق');return;
+ }
+ if(current==='bills'){
+  const service=getValue(0),account=getValue(1),a=getAmount(2),c=getValue(3);if(!account)return toast('أدخل رقم الاشتراك');if(!a)return toast('أدخل مبلغاً صحيحاً');if(wallet.balances[c]<a)return toast('الرصيد التجريبي غير كافٍ');
+  wallet.balances[c]-=a;addTransaction('طلب فاتورة تجريبي',a,c,service+' - '+account);closeModal();toast('تم تسجيل طلب الفاتورة التجريبي');return;
+ }
 }
-
-if(!amount){
-toast('أدخل مبلغاً صحيحاً');
-return;
+function renderTransactions(target,items){
+ const box=document.getElementById(target);if(!box)return;box.innerHTML='';
+ if(!items.length){box.innerHTML='<div class="tx"><div class="tx-icon">◷</div><div class="tx-info"><b>لا توجد عمليات حتى الآن</b><small>ستظهر عملياتك هنا</small></div></div>';return}
+ items.forEach(tx=>{const row=document.createElement('div');row.className='tx';const ico=document.createElement('div');ico.className='tx-icon';ico.textContent='◷';const info=document.createElement('div');info.className='tx-info';const title=document.createElement('b');title.textContent=tx.type;const detail=document.createElement('small');detail.textContent=tx.details+' • '+tx.date;const amt=document.createElement('div');amt.className='amount';amt.textContent=formatAmount(tx.amount)+' '+tx.currency;info.append(title,detail);row.append(ico,info,amt);box.appendChild(row)})
 }
-
-if(currency!=='YER'){
-toast('اختر العملة YER');
-return;
-}
-
-const formattedAmount=formatAmount(amount);
-
-const message=
-`استلمت مبلغ ${formattedAmount} YER من 733392735\n`+
-`رصيدك هو ${formattedAmount} YER`;
-
-const cleanPhone=phone.replace(/[\s-]/g,'');
-
-const smsURL=
-'sms:'+cleanPhone+
-'?body='+encodeURIComponent(message);
-
-closeModal();
-
-toast('افتح تطبيق الرسائل واضغط إرسال');
-
-setTimeout(()=>{
-window.location.href=smsURL;
-},300);
-
-return;
-}
-
-// إيداع تجريبي
-if(current==='deposit'){
-const amount=getAmount(0);
-const currency=getValue(1);
-
-if(!amount)return toast('أدخل مبلغاً صحيحاً');
-
-wallet.balances[currency]+=amount;
-
-addTransaction(
-'إيداع تجريبي',
-amount,
-currency,
-'إضافة رصيد تجريبي'
-);
-
-closeModal();
-toast('تمت إضافة الرصيد التجريبي');
-return;
-}
-
-// سحب تجريبي
-if(current==='withdraw'){
-const amount=getAmount(0);
-const currency=getValue(1);
-
-if(!amount)return toast('أدخل مبلغاً صحيحاً');
-
-if(wallet.balances[currency]<amount){
-return toast('الرصيد التجريبي غير كافٍ');
-}
-
-wallet.balances[currency]-=amount;
-
-addTransaction(
-'سحب تجريبي',
-amount,
-currency,
-'سحب من المحفظة التجريبية'
-);
-
-closeModal();
-toast('تم تسجيل السحب التجريبي');
-return;
-}
-
-// استلام حوالة
-if(current==='receive'){
-const code=getValue(0);
-
-if(!code||code.length<4){
-return toast('أدخل كود الحوالة');
-}
-
-addTransaction(
-'طلب استلام حوالة',
-0,
-'YER',
-'بانتظار التحقق من الكود: '+code
-);
-
-closeModal();
-toast('تم تسجيل الطلب بانتظار التحقق');
-return;
-}
-
-// الفواتير
-if(current==='bills'){
-const service=getValue(0);
-const account=getValue(1);
-const amount=getAmount(2);
-const currency=getValue(3);
-
-if(!account)return toast('أدخل رقم الاشتراك');
-if(!amount)return toast('أدخل مبلغاً صحيحاً');
-
-if(wallet.balances[currency]<amount){
-return toast('الرصيد التجريبي غير كافٍ');
-}
-
-wallet.balances[currency]-=amount;
-
-addTransaction(
-'طلب فاتورة تجريبي',
-amount,
-currency,
-service+' - '+account
-);
-
-closeModal();
-toast('تم تسجيل طلب الفاتورة التجريبي');
-return;
-}
-}
-
 function renderWallet(){
-
-document.getElementById('mainBalance').innerHTML=
-formatAmount(wallet.balances.YER)+
-' <small style="font-size:13px">YER</small>';
-
-document.getElementById('yerBalance').textContent=
-formatAmount(wallet.balances.YER);
-
-document.getElementById('sarBalance').textContent=
-formatAmount(wallet.balances.SAR);
-
-document.getElementById('usdBalance').textContent=
-formatAmount(wallet.balances.USD);
-
-const container=document.getElementById('transactions');
-container.innerHTML='';
-
-if(wallet.transactions.length===0){
-container.innerHTML=`
-<div class="tx">
-<div class="tx-icon">◷</div>
-<div class="tx-info">
-<b>لا توجد عمليات حتى الآن</b>
-<small>ستظهر عملياتك هنا</small>
-</div>
-</div>`;
-return;
+ document.getElementById('mainBalance').textContent=formatAmount(wallet.balances.YER)+' YER';
+ document.getElementById('yerBalance').textContent=formatAmount(wallet.balances.YER);
+ document.getElementById('sarBalance').textContent=formatAmount(wallet.balances.SAR);
+ document.getElementById('usdBalance').textContent=formatAmount(wallet.balances.USD);
+ renderTransactions('transactions',wallet.transactions.slice(0,5));renderTransactions('allTransactions',wallet.transactions);
 }
-
-wallet.transactions.slice(0,10).forEach(tx=>{
-const item=document.createElement('div');
-item.className='tx';
-
-const icon=document.createElement('div');
-icon.className='tx-icon';
-icon.textContent='◷';
-
-const info=document.createElement('div');
-info.className='tx-info';
-
-const title=document.createElement('b');
-title.textContent=tx.type;
-
-const details=document.createElement('small');
-details.textContent=tx.details+' • '+tx.date;
-
-const amount=document.createElement('div');
-amount.className='amount';
-amount.textContent=formatAmount(tx.amount)+' '+tx.currency;
-
-info.appendChild(title);
-info.appendChild(details);
-item.appendChild(icon);
-item.appendChild(info);
-item.appendChild(amount);
-
-container.appendChild(item);
-});
-}
-
-function showHistory(){
-if(wallet.transactions.length===0){
-toast('لا توجد عمليات مسجلة');
-return;
-}
-
-toast('عدد العمليات: '+wallet.transactions.length);
-
-document.getElementById('transactions').scrollIntoView({
-behavior:'smooth',
-block:'center'
-});
-}
-
-function toast(message){
-const el=document.getElementById('toastBox');
-el.textContent=message;
-el.style.display='block';
-
-clearTimeout(window.toastTimer);
-
-window.toastTimer=setTimeout(()=>{
-el.style.display='none';
-},3500);
-}
-
-function navTo(el,name){
-document.querySelectorAll('.nav').forEach(x=>{
-x.classList.remove('active');
-});
-el.classList.add('active');
-toast(name);
-}
-
+function showHistory(){showPage('historyPage');document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.nav')[3].classList.add('active')}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const p=document.getElementById(id);if(p)p.classList.add('active')}
+function navTo(el,id){document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));el.classList.add('active');showPage(id)}
+function toast(message){const e=document.getElementById('toastBox');e.textContent=message;e.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>e.style.display='none',4000)}
 renderWallet();
 </script>
-
 </body>
 </html>
